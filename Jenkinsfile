@@ -23,7 +23,7 @@ pipeline {
 stage ('stage 3 docker build') {
       steps {
  echo "=============build python image=============="
-         sh 'docker build -t python-pars-izm:latest  /python/.'
+         sh 'docker build -t python-pars-izm:latest  python/.'
       }  
     }
 
