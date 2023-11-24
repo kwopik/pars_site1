@@ -8,7 +8,7 @@ logging.basicConfig(
 )
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a bot, please talk to me!")
+    await context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a bot in DOCKER, please talk to me!")
 
 if __name__ == '__main__':
     application = ApplicationBuilder().token('6950234094:AAHXDBrECclmKvYvaQhRTVG7aPWGPbKjkG8').build()
