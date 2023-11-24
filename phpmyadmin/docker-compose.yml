@@ -5,7 +5,5 @@ phpmyadmin:
          - PMA_ARBITRARY=1
         restart: always
         ports:
-         - 8081:80
-        environment:
-          PMA_HOST: mysql
-       
+         - 8090:80
+         
