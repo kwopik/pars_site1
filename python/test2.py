@@ -5,7 +5,7 @@ import pandas as pd
 
 # Параметры подключения к MySQL
 db_config = {
-    'host': '192.168.99.241',
+    'host': 'localhost',
     'user': 'myuser',
     'password': 'mypassword',
     'database': 'mydatabase'
@@ -52,13 +52,14 @@ cursor.executemany(insert_query, all_data)
 
 # SQL-запрос для сравнения данных в таблицах osnova и osnova_new
 compare_query = """
-SELECT name, price FROM osnova
-EXCEPT
-SELECT name, price FROM osnova_new
+SELECT o.name, o.price AS old_price, n.price AS new_price
+FROM osnova o
+JOIN osnova_new n ON o.name = n.name AND o.price <> n.price
 UNION
-SELECT name, price FROM osnova_new
-EXCEPT
-SELECT name, price FROM osnova;
+SELECT o.name, o.price AS old_price, NULL AS new_price
+FROM osnova o
+LEFT JOIN osnova_new n ON o.name = n.name
+WHERE n.name IS NULL;
 """
 
 # Выполнение запроса на сравнение данных
@@ -70,7 +71,10 @@ if not result:
 else:
     print("Обнаружены изменения в данных между таблицами osnova и osnova_new:")
     for row in result:
-        print(f"Было: {row[0]} - Стало: {row[1]}")
+        if row[2] is not None:
+            print(f"Товар: {row[0]}, Было: {row[1]}, Стало: {row[2]}")
+        else:
+            print(f"Товар: {row[0]}, Было: {row[1]}, Стало: NULL (удалено)")
 
 # Подтверждение изменений в базе данных
 connection.commit()
