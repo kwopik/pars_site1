@@ -28,8 +28,8 @@ stage ('stage 3 docker build') {
     }
  stage ('stage docker run') {
       steps {
- echo "=============check and delete old build_app2=============="
-        sh 'docker run -it --name python-pars-izm-run python-pars-izm:latest '
+ echo "=============docker run image=============="
+        sh 'docker run -it python-pars-izm:latest'
       }  
     }
 
