@@ -11,4 +11,4 @@ WORKDIR /app
 COPY . /app
 
 # Команда, которая будет выполнена при запуске контейнера
-CMD ["python", "test2.py"]
+CMD ["python", "bot1.py"]
