@@ -1,0 +1,11 @@
+# Используем официальный образ MySQL
+FROM mysql:latest
+
+# Устанавливаем переменные окружения для MySQL
+ENV MYSQL_ROOT_PASSWORD=!23QweAsd!
+ENV MYSQL_DATABASE=mydatabase
+ENV MYSQL_USER=myu
+ENV MYSQL_PASSWORD=mypassword
+
+# Прокидываем порт 3306
+EXPOSE 3306
