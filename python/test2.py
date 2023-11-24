@@ -5,7 +5,7 @@ import pandas as pd
 
 # Параметры подключения к MySQL
 db_config = {
-    'host': 'localhost',
+    'host': '192.168.99.241',
     'user': 'myuser',
     'password': 'mypassword',
     'database': 'mydatabase'
