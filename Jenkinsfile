@@ -29,7 +29,10 @@ stage ('stage 3 docker build') {
  stage ('stage docker run') {
       steps {
  echo "=============docker run image=============="
-        sh 'docker run -it python-pars-izm:latest'
+      script {
+                    def output = sh(script: 'docker run --rm -it python-pars-izm:latest', returnStdout: true).trim()
+                    echo "Output from container: $output"
+      }
       }  
     }
 
