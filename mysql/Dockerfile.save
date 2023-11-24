@@ -2,7 +2,7 @@
 FROM mysql:latest
 
 # Устанавливаем переменные окружения для MySQL
-ENV MYSQL_ROOT_PASSWORD=!23QweAsd!
+ENV MYSQL_ROOT_PASSWORD=my-secret-pw
 ENV MYSQL_DATABASE=mydatabase
 ENV MYSQL_USER=myu
 ENV MYSQL_PASSWORD=mypassword
