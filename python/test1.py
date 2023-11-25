@@ -13,7 +13,7 @@ db_config = {
 
 base_url = "https://5element.by/catalog/2680-smartfony-samsung?page="
 all_data = []
-num_pages = 5
+num_pages = 3
 
 # Подключение к MySQL
 connection = mysql.connector.connect(**db_config)
