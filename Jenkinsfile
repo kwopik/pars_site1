@@ -10,22 +10,22 @@ pipeline {
     stage ('stage 0 kill sql') {
       steps {
  echo "=============docker build mysql_base-init=============="
-         sh 'docker ps |grep mysql-base && docker kill mysql-base'
+         sh 'docker ps -q -f name=mysql-base && docker kill mysql-base || echo "Контейнер mysql-base не найден или не запущен." '
       }  
     }
 
      stage ('stage 0 delete sql') {
       steps {
  echo "=============docker build mysql_base-init=============="
-         sh 'docker ps -a |grep mysql-base && docker rm mysql-base'
+         sh 'docker ps -a -q -f name=mysql-base && docker rm mysql-base || echo "Контейнер mysql-base не найден или не запущен."'
       }  
     }
-     stage ('stage 0 delete image sql ') {
-      steps {
- echo "=============docker build mysql_base-init=============="
-         sh 'docker rmi  mysql_base-init:latest'
-      }  
-    }
+ //    stage ('stage 0 delete image sql ') {
+//      steps {
+// echo "=============docker build mysql_base-init=============="
+ //        sh 'docker rmi  mysql_base-init:latest'
+ //     }  
+ //   }
     stage ('stage 1') {
       steps {
  echo "=============docker build mysql_base-init=============="
