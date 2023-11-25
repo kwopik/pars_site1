@@ -10,14 +10,14 @@ pipeline {
     stage ('stage 0 kill sql') {
       steps {
  echo "=============docker build mysql_base-init=============="
-         sh 'docker kill mysql-base'
+         sh 'docker ps |grep mysql-base && docker kill mysql-base'
       }  
     }
 
      stage ('stage 0 delete sql') {
       steps {
  echo "=============docker build mysql_base-init=============="
-         sh 'docker rm mysql-base'
+         sh 'docker ps -a |grep mysql-base && docker rm mysql-base'
       }  
     }
      stage ('stage 0 delete image sql ') {
