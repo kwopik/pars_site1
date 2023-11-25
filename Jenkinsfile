@@ -23,7 +23,7 @@ pipeline {
      stage ('stage 0 delete image sql ') {
       steps {
  echo "=============docker build mysql_base-init=============="
-         sh 'docker rmi mysql-base mysql_base-init:latest'
+         sh 'docker rmi  mysql_base-init:latest'
       }  
     }
     stage ('stage 1') {
