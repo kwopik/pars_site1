@@ -47,7 +47,7 @@ pipeline {
     stage ('stage 2.2 docker run test1') {
       steps {
  echo "=============docker run image python-pars-osnova=============="
-     sh 'docker run --name python-first-pars --rm -d python-pars-osnova:latest'
+     sh 'docker run --name python-first-pars --rm python-pars-osnova:latest'
       }  
     }
 
