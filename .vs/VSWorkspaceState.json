@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\mysql",
+    "\\python"
   ],
-  "SelectedNode": "\\Dockerfile_notwork",
+  "SelectedNode": "\\Jenkinsfile",
   "PreviewInSolutionExplorer": false
 }
