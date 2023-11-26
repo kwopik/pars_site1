@@ -1,9 +1,11 @@
 {
   "ExpandedNodes": [
     "",
+    "\\bot_python",
     "\\mysql",
-    "\\python"
+    "\\python",
+    "\\python2",
+    "\\python_test"
   ],
-  "SelectedNode": "\\Jenkinsfile",
   "PreviewInSolutionExplorer": false
 }
