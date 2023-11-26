@@ -8,7 +8,7 @@ RUN pip install requests beautifulsoup4 pandas mysql-connector-python
 WORKDIR /app
 
 # Копируем исходный код в контейнер
-COPY ./test1.py /app
+COPY . /app
 
 # Команда, которая будет выполнена при запуске контейнера
 CMD ["python", "test1.py"]

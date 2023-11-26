@@ -26,13 +26,13 @@ pipeline {
  //        sh 'docker rmi  mysql_base-init:latest'
  //     }  
  //   }
-    stage ('stage 1') {
+    stage ('stage 1 build mysql_base-init') {
       steps {
  echo "=============docker build mysql_base-init=============="
          sh 'docker build -t mysql_base-init:latest  mysql/.'
       }  
     }
-  stage ('stage 1.2 ') {
+  stage ('stage 1.2 run mysql_base-init') {
       steps {
  echo "=============docker run mysql_base-init=============="
         sh 'docker run -d --name mysql-base -p 3306:3306 mysql_base-init '
@@ -47,7 +47,7 @@ pipeline {
     stage ('stage 2.2 docker run test1') {
       steps {
  echo "=============docker run image python-pars-osnova=============="
-     sh 'docker run --rm python-pars-osnova:latest'
+     sh 'docker run -it --rm python-pars-osnova:latest'
       }  
     }
 
