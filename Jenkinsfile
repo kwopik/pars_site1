@@ -6,7 +6,7 @@ pipeline {
  // triggers { pollSCM('* * * * *') }
 
   stages {
-  /*
+  
     stage ('stage 0 kill sql') {
       steps {
  echo "=============docker build mysql_base-init=============="
@@ -38,7 +38,12 @@ pipeline {
         sh 'docker run -d --name mysql-base -p 3306:3306 mysql_base-init '
       }  
     } 
-    */
+   stage('Wait up SQL') {
+    steps {
+        echo "Waiting for 20 seconds..."
+        sleep time: 20, unit: 'SECONDS'
+    }
+}
     stage ('stage 2.1 docker build test1') {
       steps {
  echo "=============build python image python-pars-osnova=============="
