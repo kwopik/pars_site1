@@ -48,10 +48,11 @@ pipeline {
       steps {
         script {
               echo "=============docker run image python-pars-osnova=============="
-               def exitCode = sh(script: 'docker run --name python-first-pars --rm python-pars-osnova:latest', returnStatus: true)
+               def containerId = sh(script: 'docker run --name python-first-pars --rm -d python-pars-osnova:latest', returnStatus: true).trim()
                
-               if (exitCode != 0) {
-                error "Docker container failed with exit code ${exitCode}"
+                waitUntil {
+                  def status = sh(script: "docker inspect -f '{{.State.Status}}' ${containerId}", returnStatus: true).trim()
+                  return status == 'exited'
                 }
        }
       }  
