@@ -46,10 +46,16 @@ pipeline {
     }
     stage ('stage 2.2 docker run test1') {
       steps {
- echo "=============docker run image python-pars-osnova=============="
-     sh 'docker run --name python-first-pars --rm python-pars-osnova:latest'
+        script {
+
+             echo "=============docker run image python-pars-osnova=============="
+               def exitCode = sh(script: 'docker run --name python-first-pars --rm python-pars-osnova:latest', returnStatus: true)
+               
+               if (exitCode != 0) {
+                error "Docker container failed with exit code ${exitCode}"
+       }
       }  
-    }
+     }
 
 stage ('stage 3 docker build') {
       steps {
