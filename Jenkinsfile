@@ -46,14 +46,14 @@ pipeline {
     }
     stage ('stage 2.2 docker run test1') {
       steps {
-       script {
+        script {
               echo "=============docker run image python-pars-osnova=============="
                def containerId = sh(script: 'docker run --name python-first-pars1 --rm  python-pars-osnova:latest', returnStatus: true).trim()
                
-                waitUntil {
+                 waitUntil {
                   def status = sh(script: "docker inspect -f '{{.State.Status}}' ${containerId}", returnStatus: true).trim()
                   return status == 'exited'
-                }
+                 }
        }
       }  
      }
