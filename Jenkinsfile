@@ -10,14 +10,14 @@ pipeline {
     stage ('stage 0 kill sql') {
       steps {
  echo "=============docker build mysql_base-init=============="
-         sh 'docker ps -q -f name=mysql-base && docker kill mysql-base || echo "Контейнер mysql-base не найден или не запущен." '
+         sh 'docker ps -q -f name=mysql-base && docker kill mysql-base || echo "ДГ®Г­Е€ДєГ©Г­ДєД‘ mysql-base Г­Дє Г­Е•Г©Г¤ДєГ­ ДЌГ«ДЌ Г­Дє Г§Е•ДЏГіЕЇДєГ­." '
       }  
     }
 
      stage ('stage 0 delete sql') {
       steps {
  echo "=============docker build mysql_base-init=============="
-         sh 'docker ps -a -q -f name=mysql-base && docker rm mysql-base || echo "Контейнер mysql-base не найден или не запущен."'
+         sh 'docker ps -a -q -f name=mysql-base && docker rm mysql-base || echo "ДГ®Г­Е€ДєГ©Г­ДєД‘ mysql-base Г­Дє Г­Е•Г©Г¤ДєГ­ ДЌГ«ДЌ Г­Дє Г§Е•ДЏГіЕЇДєГ­."'
       }  
     }
  //    stage ('stage 0 delete image sql ') {
@@ -47,7 +47,7 @@ pipeline {
     stage ('stage 2.2 docker run test1') {
       steps {
  echo "=============docker run image python-pars-osnova=============="
-     sh 'docker run -it --name python-first-pars python-pars-osnova:latest'
+     sh 'docker run exec --rm --name python-first-pars python-pars-osnova:latest'
       }  
     }
 
