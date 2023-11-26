@@ -6,7 +6,7 @@ pipeline {
  // triggers { pollSCM('* * * * *') }
 
   stages {
-  /*
+  
     stage ('stage 0 kill sql') {
       steps {
  echo "=============docker build mysql_base-init=============="
@@ -38,7 +38,7 @@ pipeline {
         sh 'docker run -d --name mysql-base -p 3306:3306 mysql_base-init '
       }  
     } 
-    */
+    
     stage ('stage 2.1 docker build test1') {
       steps {
  echo "=============build python image python-pars-osnova=============="
@@ -47,15 +47,8 @@ pipeline {
     }
     stage ('stage 2.2 docker run test1') {
       steps {
-        script {
-              echo "=============docker run image python-pars-osnova=============="
-               def containerId = sh(script: 'docker run --name python-first-pars1 --rm  python-pars-osnova:latest', returnStatus: true).trim()
-               
-                 waitUntil {
-                  def status = sh(script: "docker inspect -f '{{.State.Status}}' ${containerId}", returnStatus: true).trim()
-                  return status == 'exited'
-                 }
-       }
+        echo "=============docker run image python-pars-osnova=============="
+        sh 'docker run --name python-first-pars4 --rm  python-pars-osnova:latest'  
       }  
      }
 
