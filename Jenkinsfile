@@ -65,9 +65,19 @@ stage ('stage 3 docker build') {
     }
  stage ('stage 3.1 docker run') {
       steps {
- echo "=============docker run image python-pars-izm=============="
-     sh 'docker run --rm python-pars-izm:latest'
-      }  
+        script {
+            // Запуск докер-контейнера и захват вывода
+            def containerOutput = sh(script: 'docker run --rm python-pars-izm:latest', returnStdout: true).trim()
+
+            // Отправка сообщения в Telegram
+            def TELEGRAM_BOT_TOKEN = '6950234094:AAHXDBrECclmKvYvaQhRTVG7aPWGPbKjkG8'
+            def TELEGRAM_CHAT_ID = '-1002094674672'
+            def MESSAGE_TEXT = "Docker Container Output:\n${containerOutput}"
+
+            // Использование curl для отправки сообщения в Telegram
+            sh "curl -s -X POST https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage -d text='${MESSAGE_TEXT}' -d chat_id=${TELEGRAM_CHAT_ID}"
+        }
+    } 
     }
 
 
