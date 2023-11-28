@@ -35,7 +35,7 @@ pipeline {
                     if (isContainerRunning != 0) {
                         // Контейнер не запущен, выполняем сборку Docker-образа
                         echo "=============docker build mysql_base-init=============="
-                        sh 'docker build -t mysql_base-init:latest  mysql/.'
+                        sh 'docker build -t 127.0.0.1:8082/mysql_base-init  mysql/.'
                     } else {
                         // Контейнер уже запущен, пропускаем шаг сборки
                         echo "Container 'mysql-base' is already running. Skipping build."
@@ -52,7 +52,7 @@ pipeline {
                     if (isContainerRunning != 0) {
                         // Контейнер не запущен, выполняем запуск
                         echo "=============docker run mysql_base-init=============="
-                        sh 'docker run -d --name mysql-base -p 3306:3306 mysql_base-init'
+                        sh 'docker run -d --name mysql-base -p 3306:3306 127.0.0.1:8082/mysql_base-init '
                     } else {
                         // Контейнер уже запущен, пропускаем шаг запуска
                         echo "Container 'mysql-base' is already running. Skipping run."
