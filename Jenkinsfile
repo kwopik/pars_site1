@@ -49,7 +49,7 @@ pipeline {
                 script {
                     // Проверяем, запущен ли контейнер
                     def isContainerRunning = sh(script: 'docker ps -q -f name=mysql-base', returnStatus: true)
-                    if (!isContainerRunning) {
+                    if (isContainerRunning != 0) {
                         // Контейнер не запущен, выполняем запуск
                         echo "=============docker run mysql_base-init=============="
                         sh 'docker run -d --name mysql-base -p 3306:3306 mysql_base-init'
