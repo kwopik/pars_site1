@@ -7,7 +7,7 @@ pipeline {
 
   stages {
   
-    stage ('stage 0 kill sql') {
+/*    stage ('stage 0 kill sql') {
       steps {
  echo "=============docker build mysql_base-init=============="
          sh 'docker ps -q -f name=mysql-base && docker kill mysql-base || echo "Ęîíňĺéíĺđ mysql-base íĺ íŕéäĺí čëč íĺ çŕďóůĺí." '
@@ -20,7 +20,8 @@ pipeline {
          sh 'docker ps -a -q -f name=mysql-base && docker rm mysql-base || echo "Ęîíňĺéíĺđ mysql-base íĺ íŕéäĺí čëč íĺ çŕďóůĺí."'
       }  
     }
- //    stage ('stage 0 delete image sql ') {
+    */
+     //    stage ('stage 0 delete image sql ') {
 //      steps {
 // echo "=============docker build mysql_base-init=============="
  //        sh 'docker rmi  mysql_base-init:latest'
@@ -43,7 +44,7 @@ pipeline {
      }
     }
   stage ('stage 1.2 run mysql_base-init') {
-      dependsOn 'stage 1 build mysql_base-init' // Зависимость от этапа сборки
+  //    dependsOn 'stage 1 build mysql_base-init' // Зависимость от этапа сборки
     steps {
                 script {
                     // Проверяем, запущен ли контейнер
