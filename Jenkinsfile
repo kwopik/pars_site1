@@ -33,6 +33,7 @@ pipeline {
       }  
     }
   stage ('stage 1.2 run mysql_base-init') {
+      dependsOn 'stage 1 build mysql_base-init' // Зависимость от этапа сборки
       steps {
  echo "=============docker run mysql_base-init=============="
         sh 'docker run -d --name mysql-base -p 3306:3306 mysql_base-init '
