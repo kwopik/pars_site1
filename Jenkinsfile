@@ -27,22 +27,53 @@ pipeline {
  //     }  
  //   }
     stage ('stage 1 build mysql_base-init') {
-      steps {
- echo "=============docker build mysql_base-init=============="
-         sh 'docker build -t mysql_base-init:latest  mysql/.'
-      }  
+     steps {
+                script {
+                    // Проверяем, запущен ли контейнер
+                    def isContainerRunning = sh(script: 'docker ps -q -f name=mysql-base', returnStatus: true)
+                    if (!isContainerRunning) {
+                        // Контейнер не запущен, выполняем сборку Docker-образа
+                        echo "=============docker build mysql_base-init=============="
+                        sh 'docker build -t mysql_base-init:latest  mysql/.'
+                    } else {
+                        // Контейнер уже запущен, пропускаем шаг сборки
+                        echo "Container 'mysql-base' is already running. Skipping build."
+                    }
+                } 
+     }
     }
   stage ('stage 1.2 run mysql_base-init') {
       dependsOn 'stage 1 build mysql_base-init' // Зависимость от этапа сборки
-      steps {
- echo "=============docker run mysql_base-init=============="
-        sh 'docker run -d --name mysql-base -p 3306:3306 mysql_base-init '
-      }  
+    steps {
+                script {
+                    // Проверяем, запущен ли контейнер
+                    def isContainerRunning = sh(script: 'docker ps -q -f name=mysql-base', returnStatus: true)
+                    if (!isContainerRunning) {
+                        // Контейнер не запущен, выполняем запуск
+                        echo "=============docker run mysql_base-init=============="
+                        sh 'docker run -d --name mysql-base -p 3306:3306 mysql_base-init'
+                    } else {
+                        // Контейнер уже запущен, пропускаем шаг запуска
+                        echo "Container 'mysql-base' is already running. Skipping run."
+                    }
+                } 
+        }
     } 
    stage('Wait up SQL') {
     steps {
-        echo "Waiting for 20 seconds..."
-        sleep time: 20, unit: 'SECONDS'
+         script {
+                    // Проверяем, запущен ли контейнер
+                    def isContainerRunning = sh(script: 'docker ps -q -f name=mysql-base', returnStatus: true)
+                    if (!isContainerRunning) {
+                        // Контейнер не запущен, выполняем запуск
+                        echo "=============docker run mysql_base-init=============="
+                         sleep time: 20, unit: 'SECONDS'
+                    } else {
+                        // Контейнер уже запущен, пропускаем шаг запуска
+                        echo "Container 'mysql-base' is already running. Skipping waiting."
+                    }
+                }
+       
     }
 }
     stage ('stage 2.1 docker build test1') {
