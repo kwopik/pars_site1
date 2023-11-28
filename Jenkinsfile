@@ -30,7 +30,7 @@ pipeline {
     stage ('stage 1 build mysql_base-init') {
      steps {
                 script {
-                    echo'===============#bilda: ${env.BUILD_NUMBER}================'
+                    echo'===============pipe number: ${BUILD_NUMBER}================'
                     // Проверяем, запущен ли контейнер
                     def isContainerRunning = sh(script: 'docker ps -q -f name=mysql-base', returnStatus: true)
                     if (isContainerRunning != 0) {
