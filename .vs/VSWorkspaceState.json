@@ -1,11 +1,13 @@
 {
   "ExpandedNodes": [
     "",
+    "\\bot2_python",
     "\\bot_python",
     "\\mysql",
     "\\python",
     "\\python2",
     "\\python_test"
   ],
+  "SelectedNode": "\\bot2_python\\Dockerfile",
   "PreviewInSolutionExplorer": false
 }
