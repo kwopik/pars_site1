@@ -2,8 +2,8 @@
 FROM python:3.8
 
 # Устанавливаем необходимые библиотеки
-RUN pip install requests python-telegram-bot[all]
-
+RUN pip install requests pyTelegramBotAPI beautifulsoup4 pandas mysql-connector-python
+requests
 # Рабочая директория внутри контейнера
 WORKDIR /app
 
@@ -11,4 +11,4 @@ WORKDIR /app
 COPY . /app
 
 # Команда, которая будет выполнена при запуске контейнера
-CMD ["python", "bot1.py"]
+CMD ["python", "new_history_url.py"]
