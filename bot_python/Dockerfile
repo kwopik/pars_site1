@@ -3,7 +3,7 @@ FROM python:3.8
 
 # Устанавливаем необходимые библиотеки
 RUN pip install requests pyTelegramBotAPI beautifulsoup4 pandas mysql-connector-python
-requests
+
 # Рабочая директория внутри контейнера
 WORKDIR /app
 
