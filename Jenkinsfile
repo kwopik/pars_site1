@@ -69,7 +69,7 @@ pipeline {
                     if (!isContainerRunning) {
                         // Контейнер не запущен, выполняем запуск
                         echo "=============docker run mysql_base-init=============="
-                         sleep time: 20, unit: 'SECONDS'
+                         sleep time: 10, unit: 'SECONDS'
                     } else {
                         // Контейнер уже запущен, пропускаем шаг запуска
                         echo "Container 'mysql-base' is already running. Skipping waiting."
