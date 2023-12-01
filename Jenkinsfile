@@ -83,7 +83,7 @@ pipeline {
       stage ('bot_build'){
           steps {
         echo "=============build bot=============="
-              sh 'docker build -t bot_with_history -f bot_python/.'
+              sh 'docker build -t bot_with_history bot_python/.'
           }
          
       }
