@@ -78,7 +78,25 @@ pipeline {
        
     }
 }
-    stage ('stage 2.1 docker build test1') {
+
+
+      stage ('bot_build'){
+          steps {
+        echo "=============build bot=============="
+              sh 'docker build -t bot_with_history -f bot_python/.'
+          }
+         
+      }
+
+      stage ('bot_run'){
+          steps {
+        echo "=============run bot=============="
+              sh 'docker run -d --name bot-telega bot_with_history '
+          }
+         
+      }
+      
+/*    stage ('stage 2.1 docker build test1') {
       steps {
  echo "=============build python image python-pars-osnova=============="
          sh 'docker build -t python-pars-osnova:latest python/.'
@@ -113,7 +131,7 @@ stage ('stage 3 docker build') {
         }
     } 
     }
-
+*/
 
     
   }
